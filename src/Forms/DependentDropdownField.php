@@ -171,7 +171,11 @@ class DependentDropdownField extends DropdownField
     public function Field($properties = [])
     {
         if (!is_subclass_of(Controller::curr(), LeftAndMain::class)) {
-            Requirements::javascript('silverstripe/admin:thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
+            if (!file_exists('silverstripe/admin:thirdparty/jquery-entwine/dist/jquery.entwine-dist.js')) {
+                Requirements::javascript('silverstripe/admin:thirdparty/jquery-entwine/jquery.entwine.js');
+            } else{
+                Requirements::javascript('silverstripe/admin:thirdparty/jquery-entwine/dist/jquery.entwine-dist.js');
+            }
         }
 
         Requirements::javascript(
